@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, Float, Boolean
 from sqlalchemy.orm import sessionmaker
+from dateutil.parser import parse
 
 engine = create_engine('sqlite:///listings.db', echo=False)
 
@@ -44,6 +45,11 @@ def check_for_record(result):
     return True
 
 def store_in_db(result):
+    price = 0
+    try:
+        price = float(result["price"].replace("$", ""))
+    except Exception:
+        pass
     # Create the listing object.
     listing = Listing(
         link=result["url"],

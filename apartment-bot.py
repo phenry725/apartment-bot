@@ -59,7 +59,7 @@ for result in cl_h.get_results(sort_by='newest', geotagged=True):
         if area == "":
             print settings.NEIGHBORHOODS
             for hood in settings.NEIGHBORHOODS:
-                if hood in result["location"].lower():
+                if hood in result["where"].lower():
                     area = hood
         if area != "":
             print "Reached slack portion", result
