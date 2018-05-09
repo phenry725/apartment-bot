@@ -1,5 +1,10 @@
+import os
+
 ##Slack variables
-SLACK_TOKEN = "xoxp-353732790215-353578495414-354208282496-ff4663b0822f3cb7070d59617150d6af"
+SLACK_TOKEN = os.getenv('SLACK_TOKEN', "")
+if SLACK_TOKEN == "":
+    print("No slack token configured, please add an EXPORT SLACK_TOKEN = to your bash_profile")
+    exit()
 SLACK_CHANNEL = "#housing"
 SLACK_BOT_NAME = 'housingBot'
 

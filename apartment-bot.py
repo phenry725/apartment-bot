@@ -42,8 +42,9 @@ cl_h = CraigslistHousing(site=settings.CL_SITE, area=settings.CL_AREA, category=
                                   'max_price': settings.MAX_PRICE,
                                   'min_price': settings.MIN_PRICE,
                                   'laundry': settings.LAUNDRY_OPTIONS,
-                                  'housing_type': settings.HOUSING_TYPE,
-                                  'parking': settings.PARKING_OPTIONS})
+                                  'parking': settings.PARKING_OPTIONS,
+                                  'housing_type': settings.HOUSING_TYPE
+                                  })
 
 for result in cl_h.get_results(sort_by='newest', geotagged=True):
     if check_for_record(result):
@@ -57,12 +58,12 @@ for result in cl_h.get_results(sort_by='newest', geotagged=True):
                 area = a
         #couldn't find from Geotag, string search the listing
         if area == "":
-            print settings.NEIGHBORHOODS
+            # print settings.NEIGHBORHOODS
             for hood in settings.NEIGHBORHOODS:
                 if hood in result["where"].lower():
                     area = hood
         if area != "":
-            print "Reached slack portion", result
+            # print "Reached slack portion", result
             store_in_db(result)
             sc = SlackClient(settings.SLACK_TOKEN)
             desc = "{0} | {1} | {2} | <{3}>".format(area, result["price"], result["name"].encode('utf-8').strip(), result["url"])
