@@ -59,3 +59,5 @@ NEIGHBORHOODS = ["russian hill",
                  "inner sunset",
                  "cole valley",
                  "noe valley"]
+
+SLEEP_TIMER = 20 * 60
