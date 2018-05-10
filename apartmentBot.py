@@ -67,7 +67,7 @@ def scrape_for_apartments():
                 # print "Reached slack portion", result, settings.SLACK_TOKEN
                 store_in_db(result)
                 sc = SlackClient(settings.SLACK_TOKEN)
-                desc = "{0} | {1} | {2} | <{3}>".format(area, result["price"], result["name"].encode('utf-8').strip(), result["url"])
+                desc = " {0} | {1} | {2} | {3} | <{4}>".format("@channel", area, result["price"], result["name"].encode('utf-8').strip(), result["url"])
                 sc.api_call(
                     "chat.postMessage", channel=settings.SLACK_CHANNEL,
                     text=desc, username=settings.SLACK_BOT_NAME,
