@@ -31,6 +31,7 @@ from craigslist import CraigslistHousing
 from slackclient import SlackClient
 from utils import in_area, check_for_record, store_in_db
 import settings
+import sys
 
 def scrape_for_apartments():
     #get results from craiglist
@@ -43,8 +44,8 @@ def scrape_for_apartments():
                                       'max_price': settings.MAX_PRICE,
                                       'min_price': settings.MIN_PRICE,
                                       'laundry': settings.LAUNDRY_OPTIONS,
-                                      'parking': settings.PARKING_OPTIONS,
-                                      'housing_type': settings.HOUSING_TYPE
+                                      'parking': settings.PARKING_OPTIONS
+                                      #'housing_type': settings.HOUSING_TYPE
                                       })
 
     for result in cl_h.get_results(sort_by='newest', geotagged=True):
@@ -64,7 +65,8 @@ def scrape_for_apartments():
                     if result["where"] is not None and hood in result["where"].lower():
                         area = hood
             if area != "":
-                # print "Reached slack portion", result, settings.SLACK_TOKEN
+                print "Reached slack portion", result
+                sys.stdout.flush()
                 store_in_db(result)
                 sc = SlackClient(settings.SLACK_TOKEN)
                 desc = " {0} | {1} | {2} | {3} | <{4}>".format("@channel", area, result["price"], result["name"].encode('utf-8').strip(), result["url"])

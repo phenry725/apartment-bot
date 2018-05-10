@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, String, DateTime, Float, Boolean
 from sqlalchemy.orm import sessionmaker
 from dateutil.parser import parse
 
-engine = create_engine('sqlite:///listings.db', echo=False)
+engine = create_engine('sqlite:////tmp/listings.db', echo=False)
 
 Base = declarative_base()
 
