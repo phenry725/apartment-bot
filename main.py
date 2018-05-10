@@ -2,6 +2,7 @@ from apartmentBot import scrape_for_apartments
 import time
 import settings
 import traceback
+import sys
 
 
 while True:

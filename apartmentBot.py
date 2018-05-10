@@ -61,7 +61,7 @@ def scrape_for_apartments():
             if area == "":
                 # print settings.NEIGHBORHOODS
                 for hood in settings.NEIGHBORHOODS:
-                    if hood in result["where"].lower():
+                    if result["where"] is not None and hood in result["where"].lower():
                         area = hood
             if area != "":
                 # print "Reached slack portion", result
