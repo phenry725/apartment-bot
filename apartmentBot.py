@@ -69,6 +69,7 @@ def scrape_for_apartments():
                 sc = SlackClient(settings.SLACK_TOKEN)
                 desc = "{0} | {1} | {2} | <{3}>".format(area, result["price"], result["name"].encode('utf-8').strip(), result["url"])
                 sc.api_call(
-                    "chat.postMessage", channel=settings.SLACK_CHANNEL, text=desc,
-                    username=settings.SLACK_BOT_NAME, icon_emoji=':robot_face:'
+                    "chat.postMessage", channel=settings.SLACK_CHANNEL,
+                    text=desc, username=settings.SLACK_BOT_NAME,
+                    icon_emoji=':robot_face:', link_names=1
                 )

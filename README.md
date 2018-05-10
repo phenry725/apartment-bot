@@ -6,4 +6,6 @@ Original source [here](https://www.dataquest.io/blog/apartment-finding-slackbot/
 Run the install.sh script, it will before the following actions:
 * check Python, and install if needed
 * pip install python-craigslist
-* pip install python-slackclient
+* pip install slackclient
+* pip install sqlalchemy
+* pip install python-dateutil
