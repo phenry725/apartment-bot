@@ -64,7 +64,7 @@ def scrape_for_apartments():
                     if result["where"] is not None and hood in result["where"].lower():
                         area = hood
             if area != "":
-                # print "Reached slack portion", result
+                # print "Reached slack portion", result, settings.SLACK_TOKEN
                 store_in_db(result)
                 sc = SlackClient(settings.SLACK_TOKEN)
                 desc = "{0} | {1} | {2} | <{3}>".format(area, result["price"], result["name"].encode('utf-8').strip(), result["url"])

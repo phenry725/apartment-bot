@@ -6,7 +6,7 @@ if SLACK_TOKEN == "":
     print("No slack token configured, please add an EXPORT SLACK_TOKEN = to your bash_profile")
     exit()
 SLACK_CHANNEL = "#housing"
-SLACK_BOT_NAME = 'housingBot'
+SLACK_BOT_NAME = "housingBot"
 
 ##Craigslist variables
 CL_SITE = 'sfbay'
