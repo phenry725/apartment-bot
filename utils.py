@@ -35,7 +35,8 @@ session = Session()
 
 #define geolocating function
 def in_area(coords, box):
-    if box[0][0] < coords[0] < box[1][0] and box[1][1] < coords[1] < box[0][1]:
+    print(box[0][0] < coords[1] < box[1][0], box[1][1] < coords[0] < box[0][1])
+    if box[0][0] < coords[1] < box[1][0] and box[1][1] < coords[0] < box[0][1]:
         return True
     return False
 

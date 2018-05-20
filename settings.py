@@ -18,9 +18,9 @@ POSTED_TODAY = True
 CATS_OK = True
 MAX_PRICE = 4100
 MIN_PRICE = 1000
-LAUNDRY_OPTIONS = ['w/d hookups', 'w/d in unit', 'laundry in bldg']
-PARKING_OPTIONS = ['carport', 'attached garage', 'detached garage', 'off-street parking']
-HOUSING_TYPE = ['apartment', 'condo', 'flat', 'house']
+LAUNDRY_OPTIONS = ['w/d hookups', 'w/d in unit', 'laundry in bldg','laundry on site']
+PARKING_OPTIONS = ['carport', 'attached garage', 'detached garage', 'off-street parking', 'street parking']
+HOUSING_TYPE = ['apartment', 'condo', 'flat', 'house', 'loft']
 
 
 ##Housing variables
@@ -51,13 +51,23 @@ AREAS = {
 NEIGHBORHOODS = ["russian hill",
                  "pac heights",
                  "pacific heights",
+                 "lower pac hts",
                  "nob hill",
                  "hayes valley",
                  "duboce triangle",
                  "mission",
                  "nopa",
+                 "panhandle",
+                 "lower haight",
+                 "marina",
+                 "cow hollow",
+                 "potrero hill",
+                 "alamo square",
                  "inner sunset",
                  "cole valley",
-                 "noe valley"]
+                 "noe valley",
+                 "west portal",
+                 "forest hill"
+                 ]
 
 SLEEP_TIMER = 20 * 60

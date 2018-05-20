@@ -56,6 +56,7 @@ def scrape_for_apartments():
             #set blank area
             area = ""
             for a, coords in settings.AREAS.items():
+                print(result);
                 if geotag is not None and in_area(geotag, coords):
                     area = a
             #couldn't find from Geotag, string search the listing
@@ -68,6 +69,7 @@ def scrape_for_apartments():
                 print "Reached slack portion", result
                 sys.stdout.flush()
                 store_in_db(result)
+                print(geotag)
                 sc = SlackClient(settings.SLACK_TOKEN)
                 desc = " {0} | {1} | {2} | {3} | <{4}>".format("@channel", area, result["price"], result["name"].encode('utf-8').strip(), result["url"])
                 sc.api_call(
