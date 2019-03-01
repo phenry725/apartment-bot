@@ -33,9 +33,9 @@ from utils import in_area, check_for_record, store_in_db
 import settings
 import sys
 
-def scrape_for_apartments():
+def scrape_for_apartments(section):
     #get results from craiglist
-    cl_h = CraigslistHousing(site=settings.CL_SITE, area=settings.CL_AREA, category=settings.CL_CATEGORY,
+    cl_h = CraigslistHousing(site=settings.CL_SITE, area=section, category=settings.CL_CATEGORY,
                              filters={'bundle_duplicates': True,
                                       'posted_today': settings.POSTED_TODAY,
                                       'min_bedrooms': settings.MIN_NUM_BEDROOMS,

@@ -9,7 +9,8 @@ while True:
     print("{}: Starting interval run.".format(time.ctime()))
     sys.stdout.flush()
     try:
-        scrape_for_apartments()
+        for city in settings.CL_AREAS:
+            scrape_for_apartments(city)
     except KeyboardInterrupt:
         print("Exiting....")
         sys.stdout.flush()

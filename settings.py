@@ -10,7 +10,7 @@ SLACK_BOT_NAME = "housingBot"
 
 ##Craigslist variables
 CL_SITE = 'sfbay'
-CL_AREA = 'sfc'
+CL_AREA = ['sfc', 'eby']
 CL_CATEGORY = 'apa'
 MAX_NUM_BEDROOMS = 3
 MIN_NUM_BEDROOMS = 1
