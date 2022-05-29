@@ -15,7 +15,6 @@ CL_CATEGORY = 'apa'
 MAX_NUM_BEDROOMS = 3
 MIN_NUM_BEDROOMS = 1
 POSTED_TODAY = True
-CATS_OK = True
 MAX_PRICE = 4100
 MIN_PRICE = 1000
 LAUNDRY_OPTIONS = ['w/d hookups', 'w/d in unit', 'laundry in bldg','laundry on site']
