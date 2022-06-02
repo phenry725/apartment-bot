@@ -1,2 +1,4 @@
 *.pyc
 listings.db
+.env
+
