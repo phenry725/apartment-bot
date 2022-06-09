@@ -47,10 +47,13 @@ def scrape_for_apartments():
                                       #'parking': settings.PARKING_OPTIONS
                                       #'housing_type': settings.HOUSING_TYPE
                                       })
+    #adding a counter to limit the amount of results that can be sent at one time
+    counter = 0
     for result in cl_h.get_results(sort_by='newest', geotagged=True):
         if check_for_record(result):
             continue
         else:
+            counter += 1
             geotag = result["geotag"]
             #set blank area
             area = ""
@@ -64,9 +67,10 @@ def scrape_for_apartments():
                 for hood in settings.NEIGHBORHOODS:
                     if result["where"] is not None and hood in result["where"].lower():
                         area = hood
-            client = Client(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
-            text = "Found a place!. {}. \nPrice per month: {}.\nNeighborhood: {}.\]nLink: {}".format(result["name"], result['price'], result['where'], result["url"])
-            message = client.messages.create(
-                            messaging_service_sid=settings.MS_SID,
-                            body=text,
-                            to=settings.TARGET_PHONE_NUMBER)
+            if area != '' and counter < 10:
+                client = Client(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
+                text = "{} per month in {}.\n {}".format(result['price'], result['where'], result["url"])
+                message = client.messages.create(
+                                messaging_service_sid=settings.MS_SID,
+                                body=text,
+                                to=settings.TARGET_PHONE_NUMBER)
