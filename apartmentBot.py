@@ -28,7 +28,7 @@
 # * parking = u'carport', u'attached garage', u'detached garage', u'off-street parking', u'street parking', u'valet parking', u'no parking'
 
 from craigslist import CraigslistHousing
-from slackclient import SlackClient
+from twilio.rest import Client
 from utils import in_area, check_for_record, store_in_db
 import settings
 import sys
@@ -43,15 +43,17 @@ def scrape_for_apartments():
                                       # 'cats_ok': settings.CATS_OK,
                                       'max_price': settings.MAX_PRICE,
                                       'min_price': settings.MIN_PRICE,
-                                      'laundry': settings.LAUNDRY_OPTIONS,
-                                      'parking': settings.PARKING_OPTIONS
+                                      'laundry': settings.LAUNDRY_OPTIONS#,
+                                      #'parking': settings.PARKING_OPTIONS
                                       #'housing_type': settings.HOUSING_TYPE
                                       })
-
+    #adding a counter to limit the amount of results that can be sent at one time
+    counter = 0
     for result in cl_h.get_results(sort_by='newest', geotagged=True):
         if check_for_record(result):
             continue
         else:
+            counter += 1
             geotag = result["geotag"]
             #set blank area
             area = ""
@@ -65,15 +67,11 @@ def scrape_for_apartments():
                 for hood in settings.NEIGHBORHOODS:
                     if result["where"] is not None and hood in result["where"].lower():
                         area = hood
-            if area != "":
-                print "Reached slack portion", result
-                sys.stdout.flush()
+            if area != '' and counter < 10:
                 store_in_db(result)
-                print(geotag)
-                sc = SlackClient(settings.SLACK_TOKEN)
-                desc = " {0} | {1} | {2} | {3} | <{4}>".format("@channel", area, result["price"], result["name"].encode('utf-8').strip(), result["url"])
-                sc.api_call(
-                    "chat.postMessage", channel=settings.SLACK_CHANNEL,
-                    text=desc, username=settings.SLACK_BOT_NAME,
-                    icon_emoji=':robot_face:', link_names=1
-                )
+                client = Client(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
+                text = "{} per month in {}.\n {}".format(result['price'], result['where'], result["url"])
+                message = client.messages.create(
+                                messaging_service_sid=settings.MS_SID,
+                                body=text,
+                                to=settings.TARGET_PHONE_NUMBER)

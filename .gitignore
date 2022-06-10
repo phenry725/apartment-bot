@@ -1,2 +1,6 @@
 *.pyc
 listings.db
+.env
+clock.py
+
+
