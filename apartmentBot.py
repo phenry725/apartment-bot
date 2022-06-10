@@ -68,6 +68,7 @@ def scrape_for_apartments():
                     if result["where"] is not None and hood in result["where"].lower():
                         area = hood
             if area != '' and counter < 10:
+                store_in_db(result)
                 client = Client(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
                 text = "{} per month in {}.\n {}".format(result['price'], result['where'], result["url"])
                 message = client.messages.create(
