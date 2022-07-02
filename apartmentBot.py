@@ -40,11 +40,10 @@ def scrape_for_apartments():
                                       'posted_today': settings.POSTED_TODAY,
                                       'min_bedrooms': settings.MIN_NUM_BEDROOMS,
                                       'max_bedrooms': settings.MAX_NUM_BEDROOMS,
-                                      # 'cats_ok': settings.CATS_OK,
                                       'max_price': settings.MAX_PRICE,
                                       'min_price': settings.MIN_PRICE,
-                                      'laundry': settings.LAUNDRY_OPTIONS#,
-                                      #'parking': settings.PARKING_OPTIONS
+                                      'laundry': settings.LAUNDRY_OPTIONS,
+                                      'parking': settings.PARKING_OPTIONS
                                       #'housing_type': settings.HOUSING_TYPE
                                       })
     #adding a counter to limit the amount of results that can be sent at one time

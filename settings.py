@@ -10,36 +10,35 @@ TARGET_PHONE_NUMBER = os.environ["PHONE_NUMBER"]
 CL_SITE = 'sfbay'
 CL_AREA = 'sfc'
 CL_CATEGORY = 'apa'
-MAX_NUM_BEDROOMS = 1
-MIN_NUM_BEDROOMS = 1
+MAX_NUM_BEDROOMS = 3
+MIN_NUM_BEDROOMS = 3
 POSTED_TODAY = True
-MAX_PRICE = 2300
-MIN_PRICE = 1700
-LAUNDRY_OPTIONS = ['w/d hookups', 'w/d in unit', 'laundry in bldg','laundry on site']
-#PARKING_OPTIONS = ['carport', 'attached garage', 'detached garage', 'off-street parking', 'street parking']
+MAX_PRICE = 6000
+MIN_PRICE = 5500
+LAUNDRY_OPTIONS = ['w/d hookups', 'w/d in unit', 'laundry in bldg', 'laundry on site']
+PARKING_OPTIONS = ['carport', 'attached garage', 'detached garage']
 HOUSING_TYPE = ['apartment', 'condo', 'flat', 'house', 'loft']
 
 ##Housing variables
 #define areas that we want to live in
 AREAS = {
     "russian-hill": [
-        [-122.424929,37.795946],
-        [-122.410338,37.805179]
+        [-122.424929, 37.795946],
+        [-122.410338, 37.805179]
     ],
     "nob-hill":
     [
         [-122.421748, 37.788999],
         [-122.408916, 37.799477]
     ],
-    "cow-hollow":
+    "mission":
     [
-        [-122.442464, 37.793427],
-        [-122.426413, 37.800617]
+        [-122.430904, 37.757974],
+        [-122.423394, 37.764963]
     ]
 }
 #fall back neighborhoods to try and to find in the listing string
 NEIGHBORHOODS = ["russian hill",
-                 "nob hill",
-                 "cow hollow"]
+                 "nob hill"]
 
 SLEEP_TIMER = 20 * 60

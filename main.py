@@ -4,13 +4,11 @@ import settings
 import traceback
 import sys
 
-counter = 0
-while counter < 13:
+while True:
     print("{}: Starting interval run.".format(time.ctime()))
     sys.stdout.flush()
     try:
         scrape_for_apartments()
-        counter += 1
     except KeyboardInterrupt:
         print("Exiting....")
         sys.stdout.flush()
